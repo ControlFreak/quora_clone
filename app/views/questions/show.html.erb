@@ -1,18 +1,38 @@
 <%- model_class = Question -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <h3><%= @question.title %></h3>
+  <% if @question.answers.count > 0 %>
+      <ol>
+        <% @question.answers.each do |answer| %>
+            <li>
+              <p><%= answer.content %></p>
+              <p>By : <%= link_to answer.user.email, user_path(answer.user) %></p>
+            </li>
+        <% end %>
+      </ol>
+  <% end %>
+  <div class="col s8">
+    <h3>Add a answer:</h3>
+    <%= form_for([@question, @question.answers.build]) do |f| %>
+        <div class="input-field">
+          <%= f.label :content %><br>
+          <%= f.text_area :content, class: "materialize-textarea" %>
+        </div>
+        <p>
+          <%= f.button class: "waves-effect waves-light btn ", type: :submit do %>Add
+          <% end %>
+        </p>
+    <% end %>
+  </div>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              questions_path, :class => 'btn btn-default'  %>
-<%#= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_question_path(@question), :class => 'btn btn-default' %>
-<%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              question_path(@question),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+            questions_path, :class => 'btn btn-default' %>
+
+
+
+

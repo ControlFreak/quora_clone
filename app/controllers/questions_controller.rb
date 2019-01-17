@@ -21,7 +21,19 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question = Question.includes(:user, :answers).find(params[:id])
+  end
+
+  def like
     @question = Question.find(params[:id])
+    @question.liked_by(current_user)
+    redirect_to questions_path
+  end
+
+  def follow_question
+    @question = Question.find(params[:id])
+    current_user.follow(@question)
+    redirect_to questions_path
   end
 
   private

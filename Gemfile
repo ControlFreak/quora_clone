@@ -54,6 +54,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'acts_as_votable'
-gem "acts_as_follower"
+gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'devise-bootstrap-views', '~> 1.0'

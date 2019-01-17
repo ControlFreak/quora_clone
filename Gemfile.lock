@@ -8,6 +8,13 @@ GIT
       less-rails (~> 3.0, >= 3.0.0)
       railties (~> 5.0, >= 5.0.1)
 
+GIT
+  remote: https://github.com/tcocca/acts_as_follower.git
+  revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
+  specs:
+    acts_as_follower (0.2.1)
+      activerecord (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,7 +55,6 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_follower (0.2.1)
     acts_as_votable (0.12.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
@@ -211,7 +217,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_follower
+  acts_as_follower!
   acts_as_votable
   byebug
   capybara (~> 2.13)

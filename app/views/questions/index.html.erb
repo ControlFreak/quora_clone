@@ -8,7 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:asked_by) %></th>
-      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,15 @@
       <tr>
         <td><%= link_to question.id, question_path(question) %></td>
         <td><%= link_to question.title, question_path(question) %></td>
-        <td><%= question.user.email %></td>
+        <td><%= link_to question.user.email, user_path(question.user) %></td>
+        <td>
+          <label><%= question.votes_for.size %></label>
+          <%= link_to 'like', like_question_path(question), method: :post, :class => 'btn btn-default btn-xs' %>
+          ,
+          <label><%= question.followers_count %></label>
+          <%= link_to 'follow', follow_question_question_path(question), method: :post, :class => 'btn btn-default btn-xs' %>
+
+        </td>
       </tr>
     <% end %>
   </tbody>
