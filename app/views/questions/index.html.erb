@@ -1,0 +1,27 @@
+<%- model_class = Question -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:asked_by) %></th>
+      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.id, question_path(question) %></td>
+        <td><%= link_to question.title, question_path(question) %></td>
+        <td><%= question.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_question_path,
+            :class => 'btn btn-primary' %>
